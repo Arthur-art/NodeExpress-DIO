@@ -1,16 +1,25 @@
 {
   "name": "NodeExpress",
   "version": "1.0.0",
-  "description": "",
+  "description": "- Curso gratuito completo, do básico ao avançado com exercicios e projetos para praticar Nodejs Express.",
   "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "cfonts": "^2.9.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arthur-art/NodeExpress-Codecademy.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cfonts": "^2.9.1",
-    "express": "^4.17.1"
-  }
+  "bugs": {
+    "url": "https://github.com/Arthur-art/NodeExpress-Codecademy/issues"
+  },
+  "homepage": "https://github.com/Arthur-art/NodeExpress-Codecademy#readme"
 }
