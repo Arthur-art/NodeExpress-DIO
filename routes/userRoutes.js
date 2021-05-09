@@ -16,7 +16,7 @@ const getUsers = () => {
     }
 }
 
-//Salvando os dados dos usuarios do arquivo users.json
+//Salvando os dados dos usuarios criando arquivo users.json
 const saveUsers = (users) => fs.writeFileSync(filePath, JSON.stringify(users, null, '\t'))
 
 
@@ -32,7 +32,7 @@ const userRoute = (app) => {
             users.push(req.body)
             saveUsers(users)
 
-            res.send(201).send('OK')
+            res.status(201).send('OK')
         })
 }
 

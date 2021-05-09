@@ -1,8 +1,9 @@
 const express = require('express')
 const userRoute = require('./routes/userRoutes')
-
+const bodyParser = require('body-parser')
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
 const port = 3000
 
 userRoute(app)

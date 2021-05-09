@@ -77,7 +77,20 @@ const getUsers = () => {
 
             users.push(req.body)
             saveUsers(users)
+
+            res.status(201).send('OK')
         })
 }
 
 )"
+
+
+# Instalando Middleware
+- transformando dados que vem do cabecario HTTP da req.body em um objeto utilizando o metodo body.parse
+- "(
+    const bodyParse = require('body-parser')
+
+    app.use(bodyParser.urlencoded({ extended: false }))
+)"
+
+# Requisicao POST feita pelo Postman
