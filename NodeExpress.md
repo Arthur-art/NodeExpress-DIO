@@ -36,6 +36,9 @@
 - criando pasta routes/userRoutes.js
 - importando arquivo com require para o index
 
+# Caminho para arquivo json, para simular a interação com banco de dados
+- const filePath = join(__dirname, 'users.json')
+
 # Verificando se a rota existe, e retornando seus valores em JSON
 "(
     //Verificando se o arquivo existe no caminho acima, se não existir, data valera um array vazio
@@ -48,4 +51,33 @@ const getUsers = () => {
         return []
     }
 }
+)"
+
+# Salvando os dados dos usuarios do arquivo users.json
+"(
+    const saveUsers = (users) => fs.writeFileSync(filePath, JSON.stringify(users, null, '\t'))
+    )"
+
+# Exportando useRoutes para o index, e usando app(express) como dependencia
+
+# Utilizando o Postman para simular requisições HTTP
+- Requisição do tipo GET  http://localhost:3000/users
+
+# Criando metodo para criar um usuario
+- "(
+
+    const userRoute = (app) => {
+    app.route('/users/:id?').get((req, res) => {
+        const users = getUsers()
+        res.send({ users })
+    })
+        //Metodo para criação de usuario
+        .post((req, res) => {
+            const users = getUsers()
+
+            users.push(req.body)
+            saveUsers(users)
+        })
+}
+
 )"

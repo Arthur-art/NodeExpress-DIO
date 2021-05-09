@@ -1,9 +1,11 @@
 const express = require('express')
-const useRoutes = require('./routes/userRoutes')
+const userRoute = require('./routes/userRoutes')
 
 
 const app = express()
 const port = 3000
+
+userRoute(app)
 
 app.listen(port, () => console.log('Rodando...'))
 
