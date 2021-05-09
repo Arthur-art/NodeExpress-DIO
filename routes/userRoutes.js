@@ -7,7 +7,7 @@ const filePath = join(__dirname, 'users.json')
 
 //Verificando se o arquivo existe no caminho acima, se não existir, data valera um array vazio
 const getUsers = () => {
-    const data = fs.existsSync(filePath) ? fs.readSync(filePath) : [];
+    const data = fs.existsSync(filePath) ? fs.readFileSync(filePath) : [];
 
     try {
         return JSON.parse(data)
@@ -33,6 +33,22 @@ const userRoute = (app) => {
             saveUsers(users)
 
             res.status(201).send('OK')
+        })
+        //Metodo para atualização de usuarios
+        .put((req, res) => {
+            const users = getUsers()
+
+            saveUsers(users.map(user => {
+                if (user.id === req.params.id) {
+                    return {
+                        ...user,
+                        ...req.body
+                    }
+                }
+                return user
+            }))
+
+            res.status(200).send('OK')
         })
 }
 

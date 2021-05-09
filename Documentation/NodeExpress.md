@@ -43,7 +43,7 @@
 "(
     //Verificando se o arquivo existe no caminho acima, se não existir, data valera um array vazio
 const getUsers = () => {
-    const data = fs.existsSync(filePath) ? fs.readSync(filePath) : [];
+  const data = fs.existsSync(filePath) ? fs.readFileSync(filePath) : [];
 
     try {
         return JSON.parse(data)
@@ -94,3 +94,42 @@ const getUsers = () => {
 )"
 
 # Requisicao POST feita pelo Postman
+
+# Utilizando metodo PUT para atualizacao do usuario
+- "(
+
+    const userRoute = (app) => {
+    app.route('/users/:id?').get((req, res) => {
+        const users = getUsers()
+        res.send({ users })
+    })
+        //Metodo para criação de usuario
+        .post((req, res) => {
+            const users = getUsers()
+
+            users.push(req.body)
+            saveUsers(users)
+
+            res.status(201).send('OK')
+        })
+        //Metodo para atualização de usuarios
+        .put((req, res) => {
+            const users = getUsers()
+
+            saveUsers(users.map(user => {
+                if (user.id === req.params.id) {
+                    return {
+                        ...user,
+                        ...req.body
+                    }
+                }
+                return user
+            }))
+
+            res.status(200).send('OK')
+        })
+}
+
+)"
+
+# Utilizando metodo PUT no postman para att o usuario
