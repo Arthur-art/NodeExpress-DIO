@@ -133,3 +133,16 @@ const getUsers = () => {
 )"
 
 # Utilizando metodo PUT no postman para att o usuario
+
+# Adicionando metodo delete
+- "(
+
+    .delete((req, res) => {
+            const users = getUsers()
+
+            saveUsers(users.filter(user => {
+                return user.id !== req.params.id
+            }))
+            res.status(200).send('OK')
+        })
+)"
