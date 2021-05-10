@@ -1,3 +1,3 @@
-# Curso de NodeJS Express da Codecademy
+# Curso de introdução ao NodeJS Express da Digital Innovation One
 
 - Curso gratuito completo, do básico ao avançado com exercicios e projetos para praticar Nodejs Express.
