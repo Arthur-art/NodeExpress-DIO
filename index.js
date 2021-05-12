@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
-const port = 3000
+const port = 2000
 
 userRoute(app)
 
