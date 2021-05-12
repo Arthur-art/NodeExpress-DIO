@@ -1,4 +1,5 @@
 const fs = require('fs')
+const { resolve } = require('path')
 
 // A primeira versão usa funções de retorno de chamada.
 
@@ -47,6 +48,12 @@ const functionAsync = async () => {
     let firstSentence = await myPromise();
     let secondSentence = await myPromise();
 
-    console.log(firstSentence, secondSentence)
+    resolve(console.log(firstSentence, secondSentence))
 }
 functionAsync()
+    .then((response) => {
+        return response
+    })
+    .catch((error) => {
+        //console.log(error)
+    })
