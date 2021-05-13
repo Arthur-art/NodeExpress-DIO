@@ -22,7 +22,7 @@ const myPromise = () => {
 
             setTimeout(() => {
                 resolve(data)
-            }, 3000)
+            }, 2000)
 
             if (err) {
                 reject(err)
@@ -34,7 +34,7 @@ const myPromise = () => {
 }
 myPromise()
     .then((response) => {
-        console.log(response)
+        console.log('mypromise', response)
     })
     .catch((error) => {
         console.warn(error)
@@ -46,9 +46,8 @@ myPromise()
 
 const functionAsync = async () => {
     let firstSentence = await myPromise();
-    let secondSentence = await myPromise();
 
-    resolve(console.log(firstSentence, secondSentence))
+    resolve(console.log('async', firstSentence))
 }
 functionAsync()
     .then((response) => {
