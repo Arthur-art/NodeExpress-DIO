@@ -1,58 +1,48 @@
-const fs = require('fs')
-const { resolve } = require('path')
-
-// A primeira versão usa funções de retorno de chamada.
-
-// fs.readFile('./files/txtOne.txt', 'utf-8', (err, data) => {
-//     const oneText = data.toUpperCase();
-
-//     fs.readFile('./files/txtSecond.txt', 'utf-8', (err, data) => {
-//         const secondText = data.toUpperCase()
-//         console.log(oneText, secondText)
-//     })
-
-// })
-
-
-// A segunda versão usa sintaxe de promise nativa
-
-const myPromise = () => {
+const shopForBeans = () => {
     return new Promise((resolve, reject) => {
-        fs.readFile('./files/txtOne.txt', 'utf-8', (err, data) => {
+        const beanTypes = ['kidney', 'fava', 'pinto', 'black', 'garbanzo'];
+        setTimeout(() => {
+            let randomIndex = Math.floor(Math.random() * 5);
+            let beanType = beanTypes[randomIndex];
+            console.log(`I bought ${beanType} beans because they were on sale.`);
+            resolve(beanType);
+        }, 1000)
+    })
+}
 
-            setTimeout(() => {
-                resolve(data)
-            }, 2000)
+let soakTheBeans = (beanType) => {
+    return new Promise((resolve, reject) => {
+        console.log('Time to soak the beans.');
+        setTimeout(() => {
+            console.log(`... The ${beanType} beans are softened.`);
+            resolve(true);
+        }, 1000);
+    });
+}
 
-            if (err) {
-                reject(err)
+let cookTheBeans = (isSoftened) => {
+    return new Promise((resolve, reject) => {
+        console.log('Time to cook the beans.');
+        setTimeout(() => {
+            if (isSoftened) {
+                console.log('... The beans are cooked!');
+                resolve('\n\nDinner is served!');
             }
-        })
-
-    })
-
+        }, 1000);
+    });
 }
-myPromise()
-    .then((response) => {
-        console.log('mypromise', response)
-    })
-    .catch((error) => {
-        console.warn(error)
-    })
 
 
+//Async function
 
-// A terceira versão usa async...await.
+const makeBeans = async () => {
 
-const functionAsync = async () => {
-    let firstSentence = await myPromise();
+    const type = await shopForBeans()
 
-    resolve(console.log('async', firstSentence))
+    const isSoft = await soakTheBeans(type)
+
+    const dinner = await cookTheBeans(isSoft)
+
+    console.log(dinner)
 }
-functionAsync()
-    .then((response) => {
-        return response
-    })
-    .catch((error) => {
-        //console.log(error)
-    })
+makeBeans()
