@@ -42,3 +42,4 @@ const serveDinner = async () => {
 }
 serveDinner()
 
+module.exports = { cookBeans, steamBroccoli, cookRice, bakeChicken };
