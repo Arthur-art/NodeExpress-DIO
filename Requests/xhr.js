@@ -2,7 +2,7 @@ const myPromise = () => {
     return new Promise((resolve, reject) => {
 
         const xhr = new XMLHttpRequest();
-        const url = 'https://api.randomuser.me/?results=3';
+        const url = 'https://api.randomuser.me/?results=4';
 
         xhr.open("GET", url)
         xhr.send(null)
@@ -18,9 +18,13 @@ const myPromise = () => {
         }
     })
 }
-myPromise().then((response) => {
-    console.log(response)
+myPromise().then(({ results }) => {
+    console.log(results)
+    results.map((value) => {
+        console.log(value.name.first)
+    })
 })
     .catch((error) => {
         console.log(error)
     })
+
