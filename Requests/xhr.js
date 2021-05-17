@@ -1,12 +1,26 @@
-const xhr = new XMLHttpRquest();
-const url = 'https://api-to-call.com/endpoint';
-xhr.responseType = 'json';
+const myPromise = () => {
+    return new Promise((resolve, reject) => {
 
-xhr.onreadystatechange = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-        return xhr.response;
-    }
+        const xhr = new XMLHttpRequest();
+        const url = 'https://api.randomuser.me/?results=3';
+
+        xhr.open("GET", url)
+        xhr.send(null)
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    resolve(JSON.parse(xhr.responseText))
+                } else {
+                    reject('Error')
+                }
+            }
+        }
+    })
 }
-
-xhr.open('GET', url)
-xhr.send()
+myPromise().then((response) => {
+    console.log(response)
+})
+    .catch((error) => {
+        console.log(error)
+    })
